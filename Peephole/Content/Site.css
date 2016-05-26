@@ -1,0 +1,164 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 70px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+}
+
+@font-face {
+    font-family: Bebas;
+    src: url('Font/BebasNeue.otf');
+}
+
+h1 {
+    color: #247BA0;
+    font-family: "Bebas", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 250% !important;
+    margin-top: 0 !important;
+    text-decoration: none !important;
+    text-align: left;
+    padding-top: 10px;
+}
+
+h2 {
+    color: #E8F1F2 !important;
+    font-family: "Bebas", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 300% !important;
+    margin-top: 0 !important;
+    text-decoration: none !important;
+    padding-top: 10px;
+}
+
+    h2 a {
+        color: #E8F1F2 !important;
+    }
+
+        h2 a:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+h3 {
+}
+
+footer {
+    text-align: center;
+    height: 20px;
+    margin: 0 auto;
+}
+
+/*Start explanation <p>*/
+p.italic-grey {
+    color: darkgray;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.hint-content {
+    font-size: 0.85em;
+}
+/*End explanation <p>*/
+
+.fotorama {
+    margin-top: 0;
+}
+
+.navbar {
+    min-height: 20px !important;
+    text-align: center !important;
+}
+
+.navbar-main {
+    width: 100%;
+    right: 0;
+    position: relative;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #E8F1F2;
+    font-size: 30%;
+    text-align: center !important;
+}
+
+.navbar .navbar-inverse .navbar-fixed-top a:hover {
+    color: #006494 !important;
+}
+
+.navbar .navbar-inverse .navbar-fixed-top h1 {
+    text-align: center;
+}
+
+.navbar-inverse {
+    background-color: #006494;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #E8F1F2;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #13293D !important;
+    }
+
+.dropdown-menu {
+    background-color: #fff !important;
+}
+
+
+.row h1 {
+    color: #247BA0 !important;
+    text-align: left;
+}
+
+h1 a {
+    text-decoration: none !important;
+    color: #E8F1F2;
+}
+
+    h1 a:hover {
+        color: #fff !important;
+    }
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #fff;
+}
+

@@ -1,0 +1,163 @@
+﻿@using WebMatrix.Data;
+@using System.Data;
+@using System.Configuration;
+@using System.Data.SqlClient;
+
+
+@{
+    ViewBag.Title = "Form";
+
+    // Opening a connection to the main database and creating a query to retrieve data.
+    var db = Database.Open("PeepholeConnection");
+    var selectQueryString = "SELECT * FROM Feedback ORDER BY Id";
+    
+    var Name = Request.Unvalidated.Form["Name"];
+    var Subject = Request.Unvalidated.Form["Subject"];
+    var Content = Request.Unvalidated.Form["Content"];
+   
+}
+
+<div class="row col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <h1>Feedback</h1>
+
+        
+        
+
+        <p>
+            We in Peephole bank would love to hear from you. Here you can leave a comment with either questions, feedback or just a note.
+
+        </p>
+        
+
+        <form role="form" method="post">
+
+            <!-- Name input field -->
+            <div class="form-group">
+                <label for="Name">Your Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter Name" value="@Name">
+
+                </div>
+            </div>
+
+            <!-- Subject input field -->
+            <div class="form-group">
+                <label for="Subject">Subject</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Enter subject" value="@Subject">
+
+                </div>
+            </div>
+
+            <!-- Content input field -->
+            <div class="form-group">
+                <label for="Content">Content</label>
+                <div class="input-group">
+                    <textarea name="Content" id="Content" class="form-control" rows="5" value="@Content"></textarea>
+
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" name="btn" id="Submit" value="Submit" class="btn btn-success">
+
+           
+        </form>
+
+        <br />
+        <br />
+        <table>
+
+            <tbody>
+
+                <!-- START Vulnerability  -->
+                @foreach (var row in db.Query(selectQueryString))
+            {
+
+                    <tr>
+                        <td><b>Name: </b></td>
+                        <td>@Html.Raw(row.Name)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Subject: </b></td>
+                        <td>@Html.Raw(row.Subject)</td>
+                    </tr>
+                    <tr>
+
+                        <td><b>Content: </b></td>
+                        <td>@Html.Raw(row.Content)</td>
+
+                    </tr>
+                    <tr>
+                        <td><hr /></td>
+                        <td><hr /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                }
+                <!-- END Vulnerability  -->
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+
+
+        <input type="checkbox" id="checkbox1" />
+        Show/hide hints
+        <div class="hidden-content" id="hidden-content">
+            <!-- START hidden content -->
+            <p>
+                Here you can post comments. This is a vulnerable comment section, so try posting a comment using a script and see what happens.
+            </p>
+            <p style="margin-top: 50px">
+                If you ever need to delete all the comments, please use this: <br/>
+                <input type="submit" name="btn2" id="Reset Database" value="Reset Database" class="btn btn-warning">
+            </p>
+
+            <!-- END hidden content -->
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@{
+    if (Request.Form["btn"] != null)
+    {
+        //btn is clicked and Form values are put into the table Feedback
+        var insertQuery = "INSERT INTO Feedback (Name, Subject, Content) " +
+                       "VALUES (@0, @1, @2)";
+        db.Execute(insertQuery, Name, Subject, Content);
+
+        // Redirecting back to the same page to refresh content.
+        Response.Redirect("/Feedback/Comment/Comments");
+    }
+
+    if (Request.Form["btn2"] != null)
+    {
+        //btn2 is clicked and the database table Feedback is reset to a stored point
+        string strcon = ConfigurationManager.ConnectionStrings["PeepholeConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strcon);
+
+        SqlCommand com = new SqlCommand("ResetTableFeedback", con);
+        com.CommandType = CommandType.StoredProcedure;
+
+        con.Open();
+        SqlDataReader rd = com.ExecuteReader();
+
+        // Redirecting back to the same page to refresh content.
+        Response.Redirect("/Feedback/Comment/Comments");
+    }
+}

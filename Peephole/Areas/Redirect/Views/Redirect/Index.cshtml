@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<!-- START vulnerability-->
+<div class="col-sm-8 col-md-8 col-lg-8;">
+    <h2>Welcome to our insurances</h2>
+
+    Read more about what we offer at <a href="http://localhost:3988/Redirect/Redirect/Redirect?url=http://localhost:3988/Redirect/Redirect/Trusted">Trusted website</a>
+
+</div>
+
+<!-- END vulnerability-->
+<!-- START hidden-->
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <input type="checkbox" id="checkbox1" />
+    Show/hide hints
+    <div class="hidden-content" id="hidden-content">
+        This section right here is called <a href="https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet">Unvalidated Redirects</a>.
+        Unvalidated redirects and forwards are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a URL contained within untrusted input.
+        <p style="margin-top: 10px;">
+            Please try figuring out how this works and how you can use this for you own benefit!
+
+            <!--
+                
+            In the localhost, try changing the 
+                "http://localhost:3988/Redirect/Redirect/Trusted"
+                to the site you want to be redirected to and send this to people you want to phish. The link looks almost authentic, but it redirects you to another site..
+
+                Here is the default redirect link:
+                http://localhost:3988/Redirect/Redirect/Redirect?url=http://localhost:3988/Redirect/Redirect/Trusted
+                -->
+        </p>
+    </div>
+</div>
+<!-- END hidden-->

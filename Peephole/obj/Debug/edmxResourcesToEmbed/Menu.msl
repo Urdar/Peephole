@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PeepholeModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="PeepholeModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ShowInMenu" ColumnName="ShowInMenu" />
+          <ScalarProperty Name="isAreaLink" ColumnName="isAreaLink" />
+          <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PeepholeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BankAccount">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountType" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="PeepholeModel.FK_BankAccount_ToTable" FromRole="BankAccount" ToRole="Users" />
+    <NavigationProperty Name="BankAccountType" Relationship="PeepholeModel.FK_BankAccount_AccType" FromRole="BankAccount" ToRole="BankAccountType" />
+    <NavigationProperty Name="Transaction" Relationship="PeepholeModel.FK_Transaction_From" FromRole="BankAccount" ToRole="Transaction" />
+    <NavigationProperty Name="Transaction1" Relationship="PeepholeModel.FK_Transaction_To" FromRole="BankAccount" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="BankAccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="BankAccount" Relationship="PeepholeModel.FK_BankAccount_AccType" FromRole="BankAccountType" ToRole="BankAccount" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="fileID" />
+    </Key>
+    <Property Name="fileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filenameName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="filePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Createdby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updatedby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MainMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShowInMenu" Type="Boolean" />
+    <Property Name="AreaName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LinkText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="FromAccount" Type="Int64" Nullable="false" />
+    <Property Name="ToAccount" Type="Int64" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="BankAccount" Relationship="PeepholeModel.FK_Transaction_From" FromRole="Transaction" ToRole="BankAccount" />
+    <NavigationProperty Name="BankAccount1" Relationship="PeepholeModel.FK_Transaction_To" FromRole="Transaction" ToRole="BankAccount" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BankAccount" Relationship="PeepholeModel.FK_BankAccount_ToTable" FromRole="Users" ToRole="BankAccount" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserType1" Relationship="PeepholeModel.FK_Users_ToTable" FromRole="Users" ToRole="UserType" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BankAccount" EntityType="Self.BankAccount" />
+    <EntitySet Name="BankAccountType" EntityType="Self.BankAccountType" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" />
+    <EntitySet Name="Files" EntityType="Self.Files" />
+    <EntitySet Name="MainMenu" EntityType="Self.MainMenu" />
+    <EntitySet Name="Transaction" EntityType="Self.Transaction" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_BankAccount_ToTable" Association="PeepholeModel.FK_BankAccount_ToTable">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BankAccount" EntitySet="BankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccount_AccType" Association="PeepholeModel.FK_BankAccount_AccType">
+      <End Role="BankAccountType" EntitySet="BankAccountType" />
+      <End Role="BankAccount" EntitySet="BankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_From" Association="PeepholeModel.FK_Transaction_From">
+      <End Role="BankAccount" EntitySet="BankAccount" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_To" Association="PeepholeModel.FK_Transaction_To">
+      <End Role="BankAccount" EntitySet="BankAccount" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <EntitySet Name="UserType" EntityType="PeepholeModel.UserType" />
+    <AssociationSet Name="FK_Users_ToTable" Association="PeepholeModel.FK_Users_ToTable">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_BankAccount_ToTable">
+    <End Type="PeepholeModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="PeepholeModel.BankAccount" Role="BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccount_AccType">
+    <End Type="PeepholeModel.BankAccountType" Role="BankAccountType" Multiplicity="1" />
+    <End Type="PeepholeModel.BankAccount" Role="BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="AccountType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_From">
+    <End Type="PeepholeModel.BankAccount" Role="BankAccount" Multiplicity="1" />
+    <End Type="PeepholeModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccount">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="FromAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_To">
+    <End Type="PeepholeModel.BankAccount" Role="BankAccount" Multiplicity="1" />
+    <End Type="PeepholeModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccount">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ToAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="PeepholeModel.FK_Users_ToTable" FromRole="UserType" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Users_ToTable">
+    <End Type="PeepholeModel.UserType" Role="UserType" Multiplicity="1" />
+    <End Type="PeepholeModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

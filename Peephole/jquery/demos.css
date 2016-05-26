@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Museo';
+    src: url('/css/fonts/museosans_500-webfont.eot');
+    src: url('/css/fonts/museosans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/museosans_500-webfont.woff') format('woff'),
+         url('/css/fonts/museosans_500-webfont.ttf') format('truetype'),
+         url('/css/fonts/museosans_500-webfont.svg#museo_sans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body{font-family:Arial, Helvetica, sans-serif;color:#666666;margin:0;padding:0;background-color:#eeeeee}
+
+h1{
+	margin:0 0 30px;
+	padding:0px 0px 0px 30px;
+	font-weight:normal;
+	font-size:24pt;
+	color:white;
+	background:url("/images/common/header_optimised.jpg") no-repeat right center #040405;
+	line-height:3em;
+	font-family:Museo,Arial, Helmet,Helvetica,Freesans, sans-serif
+}
+
+p#return{clear:left;margin-left:50px;margin-top:30px}
+p#prompt,p.prompt{margin-left:50px}
+
+a:active, a:focus{outline:none}
+
+form{margin-left:50px;width:150px}
+input{font-size:12px}
+label{float:left;width:170px}
+select{float:left;width:200px;font-family:Arial, Helvetica, sans-serif;font-size:12px;margin-bottom:10px}
+fieldset{border:none;padding:0;margin:0 0 15px;width:400px}
+
+#scroll-pane,.scroll-pane { background-color:white;float:left;overflow: auto; width: 420px; height:300px;position:relative;border:1px solid gray;margin-left:50px;margin-bottom:25px;display:inline}
+
+.scroll-content-item {background-color:#fcfcfc;color:#003366;width:100px;height:100px;float:left;margin:10px;font-size:3em;line-height:96px;text-align:center;border:1px solid gray;display:inline;}
+
+/*CYCLER - COMMON*/
+.container{height:337px;width:506px;float:left;margin-left:50px;display:inline;margin-bottom:40px}
+
+

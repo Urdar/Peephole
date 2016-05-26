@@ -1,0 +1,160 @@
+﻿
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-decoration: #68B0AB;
+    color: #13293D !important;
+    background-color: #E8F1F2 !important;
+}
+
+
+@font-face {
+    font-family: Bebas;
+    src: url('../Font/BebasNeue.otf');
+}
+
+h1 {
+    color: #247BA0 !important;
+    font-family: "Bebas", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 750% !important;
+    margin-top: 0 !important;
+    text-decoration:none !important;
+}
+
+h1 a{
+    text-decoration:none !important;
+    color: #247BA0;
+}
+h1:hover { 
+    color: #006494 !important;
+}
+
+h2 {
+    color: #13293D;
+}
+
+.sidemenu {
+    color: #13293D;
+    font-family: "Bebas", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 200% !important;
+}
+
+
+.sidemenu ul {
+list-style-type: none;
+
+}
+.sidemenu li a{
+    text-decoration:none !important;
+    color: #247BA0;
+}
+.sidemenu a:hover { 
+    color: #006494 !important;
+}
+
+.project {
+    width: 100%;
+}
+
+    .project .content {
+        margin-top: 3%;
+    }
+
+.container {
+    margin: 0;
+    background-color: rgba(237,242,244,0);
+    width: 100%;
+    margin-top: 5%;
+}
+
+
+.sidebar {
+    text-align: right;
+}
+
+footer {
+    bottom: 0px;
+    position: fixed;
+    text-align: right;
+}
+
+.content {
+    text-align: left !important;
+}
+
+.content h1{
+    color: #13293D !important;
+}
+
+.section{
+    margin-bottom: 40px;
+}
+
+
+
+
+/* The code below is from:
+    http://startbootstrap.com/template-overviews/creative/ 
+
+    Edited by Ole-Martin
+*/
+.portfolio-box {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+    .portfolio-box .portfolio-box-caption {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: #fff;
+        opacity: 0;
+        background: rgba(0,100,148,0.9);
+        -webkit-transition: all .35s;
+        -moz-transition: all .35s;
+        transition: all .35s;
+    }
+
+        .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            transform: translateY(-50%);
+        }
+
+            .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
+            .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+                padding: 0 15px;
+                font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+            }
+
+            .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+                font-size: 18px;
+            }
+
+    .portfolio-box:hover .portfolio-box-caption {
+        opacity: 1;
+    }
+
+@media(min-width:768px) {
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        font-size: 16px;
+    }
+
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size: 22px;
+    }
+}

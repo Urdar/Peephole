@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Redirect";
+    //Input string from URL field
+    string url = Request.QueryString["url"];
+    //Redirects to that input
+    Response.Redirect(url);
+}
+
+<h2>Redirect</h2>
+

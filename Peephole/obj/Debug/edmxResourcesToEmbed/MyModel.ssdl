@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FileStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\JENSV\DOCUMENTS\PEEPHOLE\PEEPHOLE\APP_DATA\PEEPHOLE.MDF.dbo.Feedback' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Subject" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\JENSV\DOCUMENTS\PEEPHOLE\PEEPHOLE\APP_DATA\PEEPHOLE.MDF.dbo.Files' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="fileID" />
+      <PropertyRef Name="filenameName" />
+      <PropertyRef Name="filePath" />
+      <PropertyRef Name="Createdby" />
+      <PropertyRef Name="CreatedDt" />
+      <PropertyRef Name="Active" />
+    </Key>
+    <Property Name="fileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filenameName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="filePath" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Createdby" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDt" Type="datetime" Nullable="false" />
+    <Property Name="Updatedby" Type="varchar" MaxLength="100" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MainMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShowInMenu" Type="bit" />
+    <Property Name="AreaName" Type="varchar" MaxLength="100" />
+    <Property Name="LinkText" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="URL" Type="varchar" MaxLength="50" />
+    <Property Name="Priority" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="FileStoreModelStoreContainer">
+    <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Feedback].[Id] AS [Id], 
+    [Feedback].[Name] AS [Name], 
+    [Feedback].[Subject] AS [Subject], 
+    [Feedback].[Content] AS [Content]
+    FROM [dbo].[Feedback] AS [Feedback]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Files" EntityType="Self.Files" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Files].[fileID] AS [fileID], 
+    [Files].[filenameName] AS [filenameName], 
+    [Files].[filePath] AS [filePath], 
+    [Files].[Createdby] AS [Createdby], 
+    [Files].[CreatedDt] AS [CreatedDt], 
+    [Files].[Updatedby] AS [Updatedby], 
+    [Files].[UpdatedDt] AS [UpdatedDt], 
+    [Files].[Active] AS [Active]
+    FROM [dbo].[Files] AS [Files]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

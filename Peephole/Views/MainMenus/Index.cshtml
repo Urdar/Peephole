@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Peephole.MainMenu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>Main Menu Items</h2>
+
+
+<script src="~/Scripts/jquery-1.12.0.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.rowReorder.min.js"></script>
+
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="~/Content/rowReorder.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+            "bPaginate" : false,
+            rowReorder: true
+            
+        });
+
+        table.on('row-reorder', function (e, diff, edit) {
+            var result = 'Reorder started on row: ' + edit.triggerRow.data()[0] + '<br>';
+
+            for (var i = 0, ien = diff.length ; i < ien ; i++) {
+                var rowData = table.row(diff[i].node).data();
+
+                result += rowData[2] + ' updated to be in position ' +
+                    diff[i].newData + ' (was ' + diff[i].oldData + ')<br>';
+
+                changeOrder(rowData[3], diff[i].newData);
+
+            }
+
+            if (edit.triggerRow.data()[4] == "") {
+                // This is a parent, update childs accordingly
+                //alert("skal oppdatere");
+
+            }
+
+            $('#result').html('Event result:<br>' + result);
+        });
+    });
+
+    function changeOrder(id, toPosition) {
+        $.ajax({
+            url: '/MainMenus/UpdateOrder',
+            data: { id: id, toPosition: toPosition}
+        }).done(function () {
+            
+        });
+    }
+
+</script>
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<div id="result"></div>*@
+
+    <table id="example" class="display" cellspacing="0" width="100%">
+   
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Priority)
+                    </th>
+                    <th>
+                      Visible?
+                    </th>
+                    <th>
+                       Link Text
+                    </th>
+                    <th>
+                        Item ID
+                    </th>
+                    <th>
+                        Parent ID
+                    </th>
+                    <th>
+                        Area Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.URL)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="@item.Id">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShowInMenu)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LinkText)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentId)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AreaName)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.URL)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+

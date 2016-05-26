@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b98b9a00bac472c84786e527e2725c9" Name="Diagram1">
+        <EntityTypeShape EntityType="PeepholeModel.BankAccount" Width="1.5" PointX="4.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.BankAccountType" Width="1.5" PointX="2.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.Feedback" Width="1.5" PointX="4.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.Files" Width="1.5" PointX="8" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.Transaction" Width="1.5" PointX="2.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.Users" Width="1.5" PointX="6.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeepholeModel.MainMenu" Width="1.5" PointX="6.125" PointY="3.625" />
+        <AssociationConnector Association="PeepholeModel.FK_BankAccount_ToTable" />
+        <AssociationConnector Association="PeepholeModel.FK_BankAccount_AccType" />
+        <AssociationConnector Association="PeepholeModel.FK_Transaction_From" />
+        <AssociationConnector Association="PeepholeModel.FK_Transaction_To" />
+        <EntityTypeShape EntityType="PeepholeModel.UserType" Width="1.5" PointX="8" PointY="1" />
+        <AssociationConnector Association="PeepholeModel.FK_Users_ToTable" />
+      </Diagram>
+      <Diagram DiagramId="950536eb88fb4947a0cbe326398d9cdd" Name="Diagram2" >
+      </Diagram>
+      <Diagram DiagramId="1e7a1f81a98e4adea6399fc9193016ff" Name="Diagram3" >
+        <EntityTypeShape EntityType="PeepholeModel.MainMenu" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
